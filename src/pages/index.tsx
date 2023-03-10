@@ -80,6 +80,21 @@ export default function Home() {
       <div className='flex content-center justify-center'>
       <p className='text-white text-4xl m-3'>It is {currentPlayer}s turn</p>
       </div>
+
+      {popupwindow && (
+       <div>
+        <div className='text-2xl text-red-600 flex content-center justify-center'>
+          You Cannot Replace a Cell Value
+        </div>
+        <div className=''>
+        <button onClick={() => setPopupwindow(false)} className="text-white bg-red-700 hover:bg-red-800 focus:outline-none font-medium rounded-full text-lg px-2 py-1 text-center mr-2 mb-2">
+          Close Pop-up
+        </button>
+      </div>  
+       </div>
+      )}
+
+
       <div className='flex content-center justify-center m-3'>
         <button className='text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l border border-white font-medium rounded-lg text-xl px-5 py-2.5 text-center' onClick={Reset}>Reset</button>
       </div>
@@ -100,12 +115,6 @@ export default function Home() {
        <button className={button_style[currentBoard[8]]} id="8" onClick={Tictac}></button>
        </div>
        </div>
-       <Popup trigger=
-                {<button> Click to open popup </button>}
-                position="right center">
-                <div>GeeksforGeeks</div>
-                <button>Click here</button>
-        </Popup>
 
       </main>
     </>
