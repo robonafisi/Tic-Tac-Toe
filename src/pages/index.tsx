@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Popup from 'reactjs-popup'
 import 'reactjs-popup/dist/index.css'
 
@@ -12,17 +12,17 @@ const button_style = ["border-2 border-slate-50 h-60 w-60","border-2 border-slat
 
 export default function Home() {
 
-  const [squares, setSquares] = useState(Array(9).fill(null))
   const [currentPlayer, setCurrentplayer] = useState(Math.round(Math.random()*1) === 1 ? "X" : "O");
   const [currentBoard, setCurrentboard] = useState([0,0,0,0,0,0,0,0,0]);
   const [popupwindow, setPopupwindow] = useState(false);
+  const [winner, setWinner] = useState("");
 
 
 
   const Tictac = () => {
     if(currentPlayer == "X"){
       const newBoard = [...currentBoard];
-      if (currentBoard[event.target.id] == 0){
+      if (currentBoard[event.target.id] == 0 && winner == "Undetermined"){
         newBoard[event.target.id] = 1;
         setCurrentboard(newBoard);
         setCurrentplayer("O");
@@ -35,7 +35,7 @@ export default function Home() {
       }
     }
     else{
-      if(currentBoard[event.target.id] == 0){
+      if(currentBoard[event.target.id] == 0 && winner == "Undetermined"){
       const newBoard = [...currentBoard];
       newBoard[event.target.id] = 2;
       console.log(newBoard);
@@ -70,17 +70,30 @@ export default function Home() {
     ];
 
     for (let i = 0; i < lines.length; i++) {
+      console.log("Value of i",i)
       const [a, b, c] = lines[i];
-    
-      if (currentBoard[a] === 1 && currentBoard[a] === 1 && currentBoard[a] === 1) {
-        return console.log("Winner, winner, chicken dinner for X");
-      } else if (currentBoard[a] === 2 && currentBoard[a] === 2 && currentBoard[a] === 2){
-        return console.log("Winner, winner, chicken dinner for O");
-      }
-    }
+      console.log([a, b, c], i)
+      if (currentBoard[a] === 1 && currentBoard[b] === 1 && currentBoard[c] === 1) {
+      return "X"}
+      else if (currentBoard[a] === 2 && currentBoard[b] === 2 && currentBoard[c] === 2){
+         return "O"}
+
+    };
     return null;
   
   }
+
+  useEffect(() => {
+    const w = Calculatewinner();
+    console.log(w)
+    if (w) {
+      setWinner(w);
+    }
+
+    if (!w) {
+      setWinner("Undetermined");
+    }
+  });
 
   return (
     <>
@@ -98,11 +111,14 @@ export default function Home() {
       <div className='flex content-center justify-center'>
       <p className='text-white text-4xl m-3'>It is {currentPlayer}s turn</p>
       </div>
+      <div className='flex content-center justify-center'>
+      <p className='text-white text-4xl m-3'>Winner is {winner}</p>
+      </div>
 
       {popupwindow && (
        <div>
         <div className='text-2xl text-red-600 flex content-center justify-center'>
-          You Cannot Replace a Cell Value
+          You Cannot Do That
         </div>
         <div className='flex content-center justify-center'>
       </div>  
@@ -112,9 +128,6 @@ export default function Home() {
 
       <div className='flex content-center justify-center m-3'>
         <button className='text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l border border-white font-medium rounded-lg text-xl px-5 py-2.5 text-center' onClick={Reset}>Reset</button>
-      </div>
-      <div className='flex content-center justify-center m-3'>
-        <button className='text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l border border-white font-medium rounded-lg text-xl px-5 py-2.5 text-center' onClick={Calculatewinner}>Calculate Winner</button>
       </div>
       <div className='flex content-center justify-center'>
       <div className='flex flex-col'>
