@@ -18,16 +18,15 @@ export default function Home() {
   const Tictac = () => {
     if(currentPlayer == "X"){
       const newBoard = [...currentBoard];
-      console.log(newBoard);
-      const newBoard[1] = 2;
-      // setCurrentboard(newBoard);
+      newBoard[event.target.id] = 1;
+      setCurrentboard(newBoard);
       setCurrentplayer("O");
     }
     else{
       const newBoard = [...currentBoard];
-      // const newBoard[event.target.id] = 1;
-      // setCurrentboard(newBoard);
-      console.log(event.target.id)
+      newBoard[event.target.id] = 2;
+      console.log(newBoard);
+      setCurrentboard(newBoard);
       setCurrentplayer("X");
     }
      
