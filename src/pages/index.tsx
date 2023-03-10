@@ -32,6 +32,20 @@ export default function Home() {
      
   }
 
+
+  function calculateWinner(){
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+  }
+
   return (
     <>
       <Head>
@@ -42,23 +56,27 @@ export default function Home() {
       </Head>
 
       <main>
-      <h1 className='text-white'>Welcome to the Tic Tac Toe Game</h1>
-      <p className='text-white'>It is {currentPlayer}s turn!</p>
+      <div className='flex content-center justify-center'>
+      <h1 className='text-white text-5xl m-3'>Welcome to the Tic Tac Toe Game</h1>
+      </div>
+      <div className='flex content-center justify-center'>
+      <p className='text-white text-4xl m-3'>It is {currentPlayer}s turn</p>
+      </div>
       <div className='flex content-center justify-center'>
       <div className='flex flex-col'>
-       <button className={button_style[currentBoard[0]]} id="1" onClick={Tictac}></button>
-       <button className={button_style[currentBoard[1]]} id="4" onClick={Tictac}></button>
-       <button className={button_style[currentBoard[2]]} id="7" onClick={Tictac}></button>
+       <button className={button_style[currentBoard[0]]} id="0" onClick={Tictac}></button>
+       <button className={button_style[currentBoard[3]]} id="3" onClick={Tictac}></button>
+       <button className={button_style[currentBoard[6]]} id="6" onClick={Tictac}></button>
        </div>
        <div className='flex flex-col'>
-       <button className={button_style[currentBoard[3]]} id="2" onClick={Tictac}></button>
-       <button className={button_style[currentBoard[4]]} id="5" onClick={Tictac}></button>
-       <button className={button_style[currentBoard[5]]} id="8" onClick={Tictac}></button>
+       <button className={button_style[currentBoard[1]]} id="1" onClick={Tictac}></button>
+       <button className={button_style[currentBoard[4]]} id="4" onClick={Tictac}></button>
+       <button className={button_style[currentBoard[7]]} id="7" onClick={Tictac}></button>
        </div>
        <div className='flex flex-col'>
-       <button className={button_style[currentBoard[6]]} id="3" onClick={Tictac}></button>
-       <button className={button_style[currentBoard[7]]} id="6" onClick={Tictac}></button>
-       <button className={button_style[currentBoard[8]]} id="9" onClick={Tictac}></button>
+       <button className={button_style[currentBoard[2]]} id="2" onClick={Tictac}></button>
+       <button className={button_style[currentBoard[5]]} id="5" onClick={Tictac}></button>
+       <button className={button_style[currentBoard[8]]} id="8" onClick={Tictac}></button>
        </div>
        </div>
 
