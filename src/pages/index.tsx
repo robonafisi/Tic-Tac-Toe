@@ -9,7 +9,7 @@ const button_style = "border-2 border-sky-500 h-60 w-60"
 export default function Home() {
 
   const [squares, setSquares] = useState(Array(9).fill(null))
-  const [currentPlayer, setCurrentplayer] = useState<"X"|"O">(Math.round(Math.random()*1) === 1 ? "X" : "O");
+  const [currentPlayer, setCurrentplayer] = useState(Math.round(Math.random()*1) === 1 ? "X" : "O");
 
 
 
@@ -20,6 +20,7 @@ export default function Home() {
     else{
       setCurrentplayer("X");
     }
+     
   }
 
   return (
@@ -35,8 +36,8 @@ export default function Home() {
       <p>It is {currentPlayer}s turn!</p>
       <div className='flex content-center justify-center'>
       <div className='flex flex-col'>
-       <button className={button_style} onClick={Tictac}></button>
-       <button className={button_style} onClick={Tictac}></button>
+       <button className="border-2 border-sky-500 h-60 w-60 bg-green-600 text-white text-9xl" onClick={Tictac}>O</button>
+       <button className="border-2 border-sky-500 h-60 w-60 bg-red-600 text-white text-9xl" onClick={Tictac}>X</button>
        <button className={button_style} onClick={Tictac}></button>
        </div>
        <div className='flex flex-col'>
