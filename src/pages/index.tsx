@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import { useState, useEffect } from 'react'
 import 'reactjs-popup/dist/index.css'
 import winnergraphic from '../../public/catpic.gif'
@@ -20,7 +21,7 @@ export default function Home() {
 
 
 
-  const Tictac = () => {
+  const Tictac = (event) => {
     if(currentPlayer == "X"){
       const newBoard = [...currentBoard];
       if (currentBoard[event.target.id] == 0 && winner == "Undetermined"){
@@ -88,14 +89,14 @@ export default function Home() {
     const w = Calculatewinner();
     console.log(w)
     if (w) {
-      setWinner(w);
-
+      setWinner(w)
+      return undefined;
     }
 
     if (!w) {
       setWinner("Undetermined");
     }
-  });
+  }, [Calculatewinner]);
 
   return (
     <>
