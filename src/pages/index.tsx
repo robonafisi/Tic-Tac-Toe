@@ -9,10 +9,17 @@ const button_style = "border-2 border-sky-500 h-60 w-60"
 export default function Home() {
 
   const [squares, setSquares] = useState(Array(9).fill(null))
-  const [currentPlayer, setCurrentplayer] = useState(false);
+  const [currentPlayer, setCurrentplayer] = useState<"X"|"O">(Math.round(Math.random()*1) === 1 ? "X" : "O");
+
+
 
   function Tictac() {
-    setCurrentplayer(!currentPlayer);
+    if(currentPlayer == "X"){
+      setCurrentplayer("O");
+    }
+    else{
+      setCurrentplayer("X");
+    }
   }
 
   return (
