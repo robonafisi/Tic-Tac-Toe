@@ -32,6 +32,10 @@ export default function Home() {
      
   }
 
+  const Reset = () => {
+    setCurrentboard([0,0,0,0,0,0,0,0,0]);
+  }
+
 
   function calculateWinner(){
     const lines = [
@@ -61,6 +65,11 @@ export default function Home() {
       </div>
       <div className='flex content-center justify-center'>
       <p className='text-white text-4xl m-3'>It is {currentPlayer}s turn</p>
+      </div>
+      <div className='flex content-center justify-center m-3'>
+        <button className='text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l border border-white font-medium rounded-lg text-sm px-5 py-2.5 text-center' onClick={Reset}>Reset</button>
+        {/* mr-2 mb-2 */}
+        {/* hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center */}
       </div>
       <div className='flex content-center justify-center'>
       <div className='flex flex-col'>
