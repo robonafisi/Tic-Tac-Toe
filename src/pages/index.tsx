@@ -2,6 +2,9 @@ import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import React from 'react'
 import { useState } from 'react'
+import Popup from 'reactjs-popup'
+import 'reactjs-popup/dist/index.css'
+
 
 const inter = Inter({ subsets: ['latin'] })
 const button_style = ["border-2 border-slate-50 h-60 w-60","border-2 border-slate-50 h-60 w-60 bg-green-600 text-white text-9xl", "border-2 border-slate-50 h-60 w-60 bg-red-600 text-white text-9xl"]
@@ -12,22 +15,33 @@ export default function Home() {
   const [squares, setSquares] = useState(Array(9).fill(null))
   const [currentPlayer, setCurrentplayer] = useState(Math.round(Math.random()*1) === 1 ? "X" : "O");
   const [currentBoard, setCurrentboard] = useState([0,0,0,0,0,0,0,0,0]);
+  const [popupwindow, setPopupwindow] = useState(false);
 
 
 
   const Tictac = () => {
     if(currentPlayer == "X"){
       const newBoard = [...currentBoard];
-      newBoard[event.target.id] = 1;
-      setCurrentboard(newBoard);
-      setCurrentplayer("O");
+      if (currentBoard[event.target.id] == 0){
+        newBoard[event.target.id] = 1;
+        setCurrentboard(newBoard);
+        setCurrentplayer("O");
+      }
+      else{
+        setPopupwindow(!popupwindow);
+      }
     }
     else{
+      if(currentBoard[event.target.id] == 0){
       const newBoard = [...currentBoard];
       newBoard[event.target.id] = 2;
       console.log(newBoard);
       setCurrentboard(newBoard);
       setCurrentplayer("X");
+      }
+      else{
+        setPopupwindow(!popupwindow);
+      }
     }
      
   }
@@ -67,9 +81,7 @@ export default function Home() {
       <p className='text-white text-4xl m-3'>It is {currentPlayer}s turn</p>
       </div>
       <div className='flex content-center justify-center m-3'>
-        <button className='text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l border border-white font-medium rounded-lg text-sm px-5 py-2.5 text-center' onClick={Reset}>Reset</button>
-        {/* mr-2 mb-2 */}
-        {/* hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center */}
+        <button className='text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l border border-white font-medium rounded-lg text-xl px-5 py-2.5 text-center' onClick={Reset}>Reset</button>
       </div>
       <div className='flex content-center justify-center'>
       <div className='flex flex-col'>
@@ -88,6 +100,12 @@ export default function Home() {
        <button className={button_style[currentBoard[8]]} id="8" onClick={Tictac}></button>
        </div>
        </div>
+       <Popup trigger=
+                {<button> Click to open popup </button>}
+                position="right center">
+                <div>GeeksforGeeks</div>
+                <button>Click here</button>
+        </Popup>
 
       </main>
     </>
