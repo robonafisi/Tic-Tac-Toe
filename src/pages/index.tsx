@@ -2,8 +2,9 @@ import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import React from 'react'
 import { useState, useEffect } from 'react'
-import Popup from 'reactjs-popup'
 import 'reactjs-popup/dist/index.css'
+import winnergraphic from '../../public/catpic.gif'
+import Image from 'next/image'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -88,6 +89,7 @@ export default function Home() {
     console.log(w)
     if (w) {
       setWinner(w);
+
     }
 
     if (!w) {
@@ -113,6 +115,10 @@ export default function Home() {
       </div>
       <div className='flex content-center justify-center'>
       <p className='text-white text-4xl m-3'>Winner is {winner}</p>
+      </div>
+      <div className='flex content-center justify-center'>
+      {winner == "O" && <Image src={winnergraphic} alt="Is loading..."/>}
+      {winner == "X" && <Image src={winnergraphic} alt="Is loading..."/>}
       </div>
 
       {popupwindow && (
