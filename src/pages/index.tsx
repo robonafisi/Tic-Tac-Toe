@@ -21,11 +21,11 @@ export default function Home() {
 
 
 
-  const Tictac = (event) => {
+  const Tictac = (event: React.MouseEvent<HTMLButtonElement>) => {
     if(currentPlayer == "X"){
       const newBoard = [...currentBoard];
-      if (currentBoard[event.target.id] == 0 && winner == "Undetermined"){
-        newBoard[event.target.id] = 1;
+      if (currentBoard[Number((event.target as HTMLButtonElement).id)] == 0 && winner == "Undetermined"){
+        newBoard[Number((event.target as HTMLButtonElement).id)] = 1;
         setCurrentboard(newBoard);
         setCurrentplayer("O");
       }
@@ -37,9 +37,9 @@ export default function Home() {
       }
     }
     else{
-      if(currentBoard[event.target.id] == 0 && winner == "Undetermined"){
+      if(currentBoard[Number((event.target as HTMLButtonElement).id)] == 0 && winner == "Undetermined"){
       const newBoard = [...currentBoard];
-      newBoard[event.target.id] = 2;
+newBoard[Number((event.target as HTMLButtonElement).id)] = 2;
       console.log(newBoard);
       setCurrentboard(newBoard);
       setCurrentplayer("X");
